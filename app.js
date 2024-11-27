@@ -1,9 +1,11 @@
 let count = 0;
 let userScore = 0;
 let compScore = 0;
+let userPick = [];
 function playGame(event) {
   let userInput = event.target.id;
   console.log(userInput);
+  userPick.push(userInput);
   let compArray = ["rock", "paper", "scissors"];
   let compInput = compArray[Math.floor(Math.random() * compArray.length)];
   console.log(compInput);
@@ -29,7 +31,7 @@ function playGame(event) {
   console.log(msg);
   count++;
 
-  if (count >= 3 || compScore >= 2 || userScore >= 2) {
+  if (count >= 5 || compScore >= 3 || userScore >= 3) {
     document.getElementById("rock").style.display = "none";
     document.getElementById("paper").style.display = "none";
     document.getElementById("scissors").style.display = "none";
@@ -37,6 +39,8 @@ function playGame(event) {
     document.getElementById("comp").style.display = "none";
     document.getElementById("msg").style.display = "none";
     document.getElementById("gameover").innerHTML =
-      "Game over! You score: " + userScore + " Computer scores: " + compScore;
+      "Game over! You score: " + userScore + " Computer scores: " + compScore +
+      ". Your picks: " +
+      userPick.join(", ");
   }
 }
